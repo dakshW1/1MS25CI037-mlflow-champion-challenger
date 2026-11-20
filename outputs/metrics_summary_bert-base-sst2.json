@@ -1,0 +1,30 @@
+{
+  "run_name": "B_sentiment_bert-base-sst2",
+  "hf_model_id": "textattack/bert-base-uncased-SST-2",
+  "role": "challenger",
+  "eval_samples": 200,
+  "metrics": {
+    "accuracy": 0.945,
+    "macro_f1": 0.9445997330714412,
+    "precision_macro": 0.944243156199678,
+    "recall_macro": 0.945004536747656,
+    "f1_negative": 0.9398907103825137,
+    "f1_positive": 0.9493087557603687,
+    "n_errors": 11,
+    "avg_latency_ms": 20.280376999435248,
+    "p95_latency_ms": 27.558354988286737,
+    "total_inference_s": 4.05607539988705
+  },
+  "directions": {
+    "accuracy": "higher_is_better",
+    "macro_f1": "higher_is_better",
+    "precision_macro": "higher_is_better",
+    "recall_macro": "higher_is_better",
+    "f1_negative": "higher_is_better",
+    "f1_positive": "higher_is_better",
+    "n_errors": "lower_is_better",
+    "avg_latency_ms": "lower_is_better",
+    "p95_latency_ms": "lower_is_better",
+    "total_inference_s": "lower_is_better"
+  }
+}

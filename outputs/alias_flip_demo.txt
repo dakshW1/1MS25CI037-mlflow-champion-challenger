@@ -1,0 +1,55 @@
+$ python predict_from_mlflow.py --out outputs/new_data_predictions_champion_only.csv
+Loaded models:/sentiment-model@champion
+  -> registry version : 1
+  -> hf_model_id      : distilbert-base-uncased-finetuned-sst-2-english
+  -> source run_id    : 6ea2c84bf24f4d6d9edd2884eddff9c6
+
+Predictions on new data (not part of the evaluation set):
+ id                                                                           text champion_label  champion_score my_label
+  1        The battery died after two days and support never replied to my emails.       negative          0.9997 negative
+  2 Honestly the best ramen I have had outside of Tokyo, I will be back next week.       positive          0.9978 positive
+  3      The lecture was so dull that half the class fell asleep before the break.       negative          0.9998 negative
+  4 I expected a disaster, but the sequel turned out to be surprisingly heartfelt.       positive          0.9991 positive
+  5        The hotel looked nothing like the photos and the room smelled of smoke.       negative          0.9963 negative
+  6         Setup took five minutes and the app just works, exactly what I wanted.       positive          0.9982 positive
+  7                Not bad at all, though I would not pay full price for it again.       positive          0.9950 positive
+  8      The plot was predictable, yet the soundtrack kept me hooked till the end.       positive          0.9821 positive
+  9       Customer service was polite but completely useless at fixing my problem.       negative          0.9995 negative
+ 10                         What a waste of a talented cast on such a lazy script.       negative          0.9998 negative
+
+Saved -> outputs/new_data_predictions_champion_only.csv
+
+$ python register_champion.py --swap-aliases
+Swapped: champion -> v2, challenger -> v1
+
+Registered model: sentiment-model
+alias       version  hf_model_id                                         run_id
+champion    2        textattack/bert-base-uncased-SST-2                  8cc926f57c5c47ce89880ca04c1d8057
+challenger  1        distilbert-base-uncased-finetuned-sst-2-english     6ea2c84bf24f4d6d9edd2884eddff9c6
+
+$ python predict_from_mlflow.py --out outputs/new_data_predictions_after_flip.csv   # same script, no edits
+Loaded models:/sentiment-model@champion
+  -> registry version : 2
+  -> hf_model_id      : textattack/bert-base-uncased-SST-2
+  -> source run_id    : 8cc926f57c5c47ce89880ca04c1d8057
+
+Predictions on new data (not part of the evaluation set):
+ id                                                                           text champion_label  champion_score my_label
+  1        The battery died after two days and support never replied to my emails.       negative          0.9973 negative
+  2 Honestly the best ramen I have had outside of Tokyo, I will be back next week.       positive          0.9978 positive
+  3      The lecture was so dull that half the class fell asleep before the break.       negative          0.9988 negative
+  4 I expected a disaster, but the sequel turned out to be surprisingly heartfelt.       positive          0.9987 positive
+  5        The hotel looked nothing like the photos and the room smelled of smoke.       negative          0.9956 negative
+  6         Setup took five minutes and the app just works, exactly what I wanted.       positive          0.8725 positive
+  7                Not bad at all, though I would not pay full price for it again.       positive          0.9730 positive
+  8      The plot was predictable, yet the soundtrack kept me hooked till the end.       positive          0.9984 positive
+  9       Customer service was polite but completely useless at fixing my problem.       negative          0.9985 negative
+ 10                         What a waste of a talented cast on such a lazy script.       negative          0.9991 negative
+
+Saved -> outputs/new_data_predictions_after_flip.csv
+
+$ python register_champion.py   # restore aliases from the logged decision
+Registered model: sentiment-model
+alias       version  hf_model_id                                         run_id
+champion    1        distilbert-base-uncased-finetuned-sst-2-english     6ea2c84bf24f4d6d9edd2884eddff9c6
+challenger  2        textattack/bert-base-uncased-SST-2                  8cc926f57c5c47ce89880ca04c1d8057

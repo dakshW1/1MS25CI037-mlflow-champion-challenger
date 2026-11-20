@@ -1,0 +1,53 @@
+{
+  "experiment": "hf-sentiment-champion-challenger",
+  "eval_samples": 200,
+  "rule": {
+    "primary_metric": "macro_f1",
+    "direction": "higher_is_better",
+    "margin": 0.02,
+    "latency_guardrail_x": 3.0,
+    "tie_breaker": "faster model when |delta| < margin"
+  },
+  "A": {
+    "hf_model_id": "distilbert-base-uncased-finetuned-sst-2-english",
+    "run_name": "A_sentiment_distilbert-sst2",
+    "metrics": {
+      "accuracy": 0.935,
+      "macro_f1": 0.9342753861321065,
+      "precision_macro": 0.9358766233766234,
+      "recall_macro": 0.9331081762274422,
+      "f1_negative": 0.9273743016759777,
+      "f1_positive": 0.9411764705882353,
+      "n_errors": 13,
+      "avg_latency_ms": 10.385673000419047,
+      "p95_latency_ms": 15.3700549941277,
+      "total_inference_s": 2.0771346000838093
+    }
+  },
+  "B": {
+    "hf_model_id": "textattack/bert-base-uncased-SST-2",
+    "run_name": "B_sentiment_bert-base-sst2",
+    "metrics": {
+      "accuracy": 0.945,
+      "macro_f1": 0.9445997330714412,
+      "precision_macro": 0.944243156199678,
+      "recall_macro": 0.945004536747656,
+      "f1_negative": 0.9398907103825137,
+      "f1_positive": 0.9493087557603687,
+      "n_errors": 11,
+      "avg_latency_ms": 20.280376999435248,
+      "p95_latency_ms": 27.558354988286737,
+      "total_inference_s": 4.05607539988705
+    }
+  },
+  "delta_primary_metric": 0.010324346939334705,
+  "latency_ratio_B_over_A": 1.952726318132389,
+  "mcnemar": {
+    "A_only_correct": 3,
+    "B_only_correct": 5,
+    "p_value": 0.7265625
+  },
+  "winner": "A",
+  "winner_hf_model_id": "distilbert-base-uncased-finetuned-sst-2-english",
+  "reason": "|delta| = 0.0103 < margin 0.02: tie-breaker picks the faster model (A)."
+}

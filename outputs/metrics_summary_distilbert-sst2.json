@@ -1,0 +1,30 @@
+{
+  "run_name": "A_sentiment_distilbert-sst2",
+  "hf_model_id": "distilbert-base-uncased-finetuned-sst-2-english",
+  "role": "champion",
+  "eval_samples": 200,
+  "metrics": {
+    "accuracy": 0.935,
+    "macro_f1": 0.9342753861321065,
+    "precision_macro": 0.9358766233766234,
+    "recall_macro": 0.9331081762274422,
+    "f1_negative": 0.9273743016759777,
+    "f1_positive": 0.9411764705882353,
+    "n_errors": 13,
+    "avg_latency_ms": 10.385673000419047,
+    "p95_latency_ms": 15.3700549941277,
+    "total_inference_s": 2.0771346000838093
+  },
+  "directions": {
+    "accuracy": "higher_is_better",
+    "macro_f1": "higher_is_better",
+    "precision_macro": "higher_is_better",
+    "recall_macro": "higher_is_better",
+    "f1_negative": "higher_is_better",
+    "f1_positive": "higher_is_better",
+    "n_errors": "lower_is_better",
+    "avg_latency_ms": "lower_is_better",
+    "p95_latency_ms": "lower_is_better",
+    "total_inference_s": "lower_is_better"
+  }
+}
