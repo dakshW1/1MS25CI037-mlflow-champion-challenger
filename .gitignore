@@ -1,0 +1,14 @@
+# MLflow state and model files (never commit)
+mlruns/
+mlartifacts/
+mlflow.db
+*.db
+*.safetensors
+*.bin
+*.pt
+hf_export/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env

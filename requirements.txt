@@ -1,0 +1,10 @@
+# Tested with Python 3.14 on Windows 11 (CPU only)
+mlflow==3.18.0
+transformers==5.23.0
+torch==2.15.0
+huggingface_hub
+pandas==3.1.1
+pyarrow
+scikit-learn==1.9.1
+scipy
+matplotlib==3.11.2
